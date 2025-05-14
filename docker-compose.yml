@@ -1,0 +1,19 @@
+version: "3"
+services:
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    tty: true
+    working_dir: /app
+    networks:
+      - database-network
+    environment:
+      - APP_PORT=9001
+    ports:
+      - "8081:9001"
+
+networks:
+  database-network:
+    external: true
